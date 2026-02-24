@@ -7,19 +7,25 @@ Genere des missions, suit ta progression de pilote, et t'assiste en vol avec une
 
 ---
 
-## Installation rapide (executable)
+## Telecharger
 
-> Aucune installation Python requise. Double-clic et c'est parti.
+**[Telecharger la derniere version](https://github.com/TonyCorroenne/msfs2024-career-mode-/releases)**
 
-1. **Telecharger** la derniere [Release](https://github.com/TonyCorroenne/msfs2024-career-mode-/releases)
+> Aucune installation requise. Telecharge, extrait, lance.
+
+---
+
+## Installation (2 minutes)
+
+1. **Telecharger** le ZIP depuis la page [Releases](https://github.com/TonyCorroenne/msfs2024-career-mode-/releases)
 2. **Extraire** le ZIP dans un dossier de ton choix
 3. **Copier** `config.template.json` et le renommer en `config.json`
 4. **Lancer** `MSFS_Copilot_V2.exe`
 5. **Lancer** MSFS 2024 — le programme se connecte automatiquement via SimConnect
 
-C'est tout. Temps d'installation : ~2 minutes.
+C'est tout.
 
-### Configuration minimale
+### Configuration
 
 Le fichier `config.json` fonctionne tel quel avec les valeurs par defaut.
 Pour activer les fonctions avancees, ajoute tes cles API :
@@ -31,38 +37,30 @@ Pour activer les fonctions avancees, ajoute tes cles API :
 
 > Sans cles API, le generateur de missions, le mode carriere, les pannes, le carburant et la maintenance fonctionnent normalement. Seuls le copilote vocal et les donnees aero enrichies necessitent des cles.
 
----
+### Options de configuration
 
-## Installation depuis les sources (developpeurs)
-
-### Pre-requis
-- Python 3.10+
-- Microsoft Flight Simulator 2024 avec SimConnect
-
-### Etapes
-
-```bash
-# Cloner le repo
-git clone https://github.com/TonyCorroenne/msfs2024-career-mode-.git
-cd msfs2024-mission-generator
-
-# Installer les dependances
-pip install -r requirements.txt
-
-# Configurer
-copy config.template.json config.json
-# Editer config.json avec tes cles API (optionnel)
-
-# Lancer (V2)
-python v2/main_v2.py
-```
-
-### Compiler l'executable soi-meme
-
-```bash
-pip install pyinstaller
-pyinstaller MSFS_Copilot_V2.spec
-# L'exe sera dans dist/MSFS_Copilot_V2/
+```json
+{
+  "pln_destination_folder": "",          // Dossier export plans de vol (auto-detecte si vide)
+  "groq_api_key": "",                    // Cle API Groq (optionnel)
+  "openaip_api_key": "",                 // Cle API OpenAIP (optionnel)
+  "auto_copy_pln": true,                 // Copie auto des plans vers MSFS
+  "copilot_enabled": true,               // Activer le copilote IA
+  "voice_enabled": true,                 // Activer la synthese vocale
+  "voice_language": "fr-FR",             // Langue (fr-FR ou en-US)
+  "career_mode": true,                   // Activer le mode carriere
+  "performance_mode": "balanced",        // powersaver / balanced / performance
+  "fuel_management": true,               // Gestion carburant
+  "maintenance_enabled": true,           // Usure et maintenance
+  "passenger_comfort": true,             // Confort passagers
+  "relaxed_mode": false,                 // Mode detendu (moins de penalites)
+  "ptt_enabled": false,                  // Push-to-Talk
+  "ptt_joystick_id": 0,                  // ID joystick pour PTT
+  "ptt_button_id": 0,                    // ID bouton pour PTT
+  "mission_distance_min": 50,            // Distance min mission (nm)
+  "mission_distance_max": 500,           // Distance max mission (nm)
+  "preferred_microphone": ""             // Micro prefere (auto si vide)
+}
 ```
 
 ---
@@ -113,72 +111,25 @@ pyinstaller MSFS_Copilot_V2.spec
 
 ---
 
-## Structure du projet
+## Configuration requise
 
-```
-├── main.py                  # V1 (legacy)
-├── v2/
-│   ├── main_v2.py           # Application principale V2
-│   ├── career/              # Systeme de carriere (4 modules)
-│   ├── copilot/             # Copilote IA (8 modules)
-│   ├── systems/             # Pannes, fuel, maintenance (8 modules)
-│   ├── optimization/        # Performance et cache (5 modules)
-│   ├── utils/               # Outils (distance, flight recorder)
-│   ├── airports.json        # Base de donnees aeroports
-│   ├── navaids.json         # VOR et intersections
-│   └── config.template.json # Template de configuration
-├── config.template.json     # Template de configuration (racine)
-├── requirements.txt         # Dependances Python
-└── LICENSE                  # MIT
-```
+- Windows 10/11
+- Microsoft Flight Simulator 2024
+- ~50 Mo d'espace disque
 
 ---
 
-## Configuration complete
+## Un probleme ? Une idee ?
 
-```json
-{
-  "pln_destination_folder": "",          // Dossier export plans de vol (auto-detecte si vide)
-  "groq_api_key": "",                    // Cle API Groq (optionnel)
-  "openaip_api_key": "",                 // Cle API OpenAIP (optionnel)
-  "auto_copy_pln": true,                 // Copie auto des plans vers MSFS
-  "copilot_enabled": true,               // Activer le copilote IA
-  "voice_enabled": true,                 // Activer la synthese vocale
-  "voice_language": "fr-FR",             // Langue (fr-FR ou en-US)
-  "career_mode": true,                   // Activer le mode carriere
-  "performance_mode": "balanced",        // powersaver / balanced / performance
-  "fuel_management": true,               // Gestion carburant
-  "maintenance_enabled": true,           // Usure et maintenance
-  "passenger_comfort": true,             // Confort passagers
-  "relaxed_mode": false,                 // Mode detendu (moins de penalites)
-  "ptt_enabled": false,                  // Push-to-Talk
-  "ptt_joystick_id": 0,                  // ID joystick pour PTT
-  "ptt_button_id": 0,                    // ID bouton pour PTT
-  "mission_distance_min": 50,            // Distance min mission (nm)
-  "mission_distance_max": 500,           // Distance max mission (nm)
-  "preferred_microphone": ""             // Micro prefere (auto si vide)
-}
-```
-
----
-
-## Contribuer
-
-Les contributions sont les bienvenues !
-
-- **Bug** : ouvre une [Issue](https://github.com/TonyCorroenne/msfs2024-career-mode-/issues)
-- **Feature request** : ouvre une Issue avec le tag `enhancement`
-- **Code** : fork, branche, pull request
+Ouvre une [Issue](https://github.com/TonyCorroenne/msfs2024-career-mode-/issues) ou laisse un commentaire sur la chaine YouTube.
 
 ---
 
 ## Licence
 
-Ce projet est open source sous licence MIT, avec une condition simple :
+**Ce programme est gratuit et doit le rester.**
 
-**Ce programme est gratuit et doit le rester.** Tu peux l'utiliser, le modifier, le partager, en faire ce que tu veux — mais tu ne peux pas le revendre, ni sous sa forme actuelle, ni en le repackageant. Si quelqu'un te demande de payer pour ce programme, c'est une arnaque.
-
-Le code est la, il est ouvert, il est gratuit. Point.
+Tu peux l'utiliser, le partager, en faire ce que tu veux — mais tu ne peux pas le revendre, ni sous sa forme actuelle, ni en le repackageant. Si quelqu'un te demande de payer pour ce programme, c'est une arnaque.
 
 ---
 
