@@ -174,7 +174,11 @@ Les contributions sont les bienvenues !
 
 ## Licence
 
-MIT — fais ce que tu veux avec, c'est cadeau.
+Ce projet est open source sous licence MIT, avec une condition simple :
+
+**Ce programme est gratuit et doit le rester.** Tu peux l'utiliser, le modifier, le partager, en faire ce que tu veux — mais tu ne peux pas le revendre, ni sous sa forme actuelle, ni en le repackageant. Si quelqu'un te demande de payer pour ce programme, c'est une arnaque.
+
+Le code est la, il est ouvert, il est gratuit. Point.
 
 ---
 
